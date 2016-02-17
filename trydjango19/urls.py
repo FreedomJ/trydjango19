@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^posts/', include("posts.urls", namespace="posts")),
+    url(r'^snippets/', include('snippets.urls')),
     # url(r'^posts/$', "<appname>.views.<function_name>"),
 ]
