@@ -73,7 +73,6 @@ class SnippetList(generics.ListCreateAPIView):
 #         snippet.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
 class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer

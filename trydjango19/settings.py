@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'posts',
     'rest_framework',
     'snippets',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -71,6 +72,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'trydjango19.urls'
@@ -147,3 +150,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# CORS Set up
+CORS_ORIGIN_ALLOW_ALL = True
+
+
