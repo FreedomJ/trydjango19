@@ -5,10 +5,22 @@ from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
+    password = serializers.CharField(
+        style={'input_type': 'password'}
+    )
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'snippets')
+        fields = ('id', 'username', 'password', 'snippets')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = User(
+            username=validated_data['username']
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 # class SnippetSerializer(serializers.Serializer):
 #     pk = serializers.IntegerField(read_only=True)

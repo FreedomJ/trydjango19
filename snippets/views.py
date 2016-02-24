@@ -9,6 +9,19 @@ from django.contrib.auth.models import User
 from snippets.serializers import UserSerializer
 from rest_framework import permissions
 from snippets.permissions import IsOwnerOrReadOnly
+from rest_framework.permissions import AllowAny
+
+class UserCreate(generics.CreateAPIView):
+    serializer_class = UserSerializer
+
+    def perform_create(self, serializer):
+        serializer.create(self.request.data)
+
+    def get_permissions(self):
+        # allow non-authenticated user to create via POST
+        return (AllowAny()),
+        # return (AllowAny() if self.request.method == 'POST'
+        #         else IsStaffOrTargetUser()),
 
 
 class UserList(generics.ListAPIView):
